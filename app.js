@@ -36,7 +36,7 @@ app.use('/order', orderRoute)
 app.use('/notification', notificationRoute)
 app.use('/restaurant', restaurantRouter)
 
-const port = process.env.PORT || 3001
+const port = process.env.PORT || 3333
 
 // app.get('/', ((req, res) => {
 //     res.send('Hello ', port)
