@@ -34,6 +34,10 @@ const storage = multer.diskStorage({
 
 var upload = multer({ storage: storage }).single('image')
 
+exports.getRes =((req, res) => {
+    res.json({data: `test`})
+})
+
 exports.getCategory = ((req, res) => {
     Category.find()
         .populate('restaurant')

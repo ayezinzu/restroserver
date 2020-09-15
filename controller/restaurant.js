@@ -33,8 +33,8 @@ exports.singupRestaurant_post = ((req, res) => {
         })
 })
 
-exports.test= ((req, res) => {
-    res.json({ success: true, message: 'Color Addition Failed' })
+exports.test_get = ((req, res) => {
+    console.log(`hello`)
 })
 
 exports.color_post =  ( async (req, res) => {

@@ -122,6 +122,7 @@ const fs = require('fs')
 // })
 
 route.get('/getCategory', categoryController.getCategory)
+route.get('/getRes', categoryController.getRes)
 route.post('/addcategory', categoryController.addCategory)
 route.put('/updateCategory', categoryController.updateCategory)
 route.delete('/deleteCategory/:id', categoryController.deleteCategory)
