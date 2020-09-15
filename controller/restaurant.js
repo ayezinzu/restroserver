@@ -33,6 +33,10 @@ exports.singupRestaurant_post = ((req, res) => {
         })
 })
 
+exports.test= ((req, res) => {
+    res.json({ success: true, message: 'Color Addition Failed' })
+})
+
 exports.color_post =  ( async (req, res) => {
     const newColors = new Color({
         main: req.body.main,
