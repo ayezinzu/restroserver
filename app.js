@@ -38,9 +38,9 @@ app.use('/restaurant', restaurantRouter)
 
 const port = process.env.PORT || 3777
 
-// app.get('/', ((req, res) => {
-//     res.send('Hello ', port)
-// }))
+app.get('/', ((req, res) => {
+    res.send('Hello ', port)
+}))
 
 app.listen(port, () => {
     console.log(`Magic Happens At Port ${port}`)
