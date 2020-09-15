@@ -33,9 +33,6 @@ exports.singupRestaurant_post = ((req, res) => {
         })
 })
 
-exports.test_get = ((req, res) => {
-    console.log(`hello`)
-})
 
 exports.color_post =  ( async (req, res) => {
     const newColors = new Color({
