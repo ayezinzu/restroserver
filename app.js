@@ -38,7 +38,7 @@ app.use('/restaurant', restaurantRouter)
 
 const port = process.env.PORT || 3777
 
-app.get('/', ((req, res) => {
+app.get('/hello', ((req, res) => {
     res.send('Hello ', port)
 }))
 
