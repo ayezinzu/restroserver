@@ -35,12 +35,8 @@ exports.singupRestaurant_post = ((req, res) => {
 
 
 exports.color_post =  ( async (req, res) => {
-    const newColors = new Color({
-        main: req.body.main,
-        buttons: req.body.buttons,
-        extra: req.body.extra
-    }) 
-    const foundRestro = await Restaurant.findById({ _id: req.params.id })
+
+    const foundRestro = await Restaurant.findById({ restaurant_id: req.body.restaurant })
     foundRestro.main = req.body.main,
     foundRestro.buttons = req.body.buttons,
     foundRestro.extra = req.body.extra 
@@ -53,6 +49,7 @@ exports.color_post =  ( async (req, res) => {
             console.log(error)
             res.json({ success: false, message: 'Color Addition Failed' })
         })
+
 })
 
 exports.color_get = ((req, res) => {
