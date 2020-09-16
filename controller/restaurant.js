@@ -35,12 +35,13 @@ exports.singupRestaurant_post = ((req, res) => {
 
 
 exports.color_post =  ( async (req, res) => {
-
-    const foundRestro = await Restaurant.findById({ restaurant_id: req.body.restaurant })
-    foundRestro.main = req.body.main,
+    console.log(req.body, `test`)
+    const foundRestro = await Restaurant.findById(req.body.restaurant)
+    foundRestro.main = req.body.main
     foundRestro.buttons = req.body.buttons,
     foundRestro.extra = req.body.extra 
-
+    
+    
     foundRestro.save()
         .then(result => {
             res.json({success: true, data: result})

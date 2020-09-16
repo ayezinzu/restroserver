@@ -35,11 +35,12 @@ app.use('/specials', specialsRoute)
 app.use('/order', orderRoute)
 app.use('/notification', notificationRoute)
 app.use('/restaurant', restaurantRouter)
-// app.get(`/test`, (req, res) => {
-//     res.sendFile(__dirname + `/index.html`)
-// })
 
-const port = process.env.PORT || 3777
+app.get(`/test`, (req, res) => {
+    res.sendFile(__dirname + `/index.html`)
+})
+
+const port = process.env.PORT || 3000
 
 app.get('/hello', ((req, res) => {
     res.send('Hello ', port)
