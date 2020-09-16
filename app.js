@@ -40,7 +40,7 @@ app.get(`/test`, (req, res) => {
     res.sendFile(__dirname + `/index.html`)
 })
 
-const port = process.env.PORT || 3000
+const port = process.env.PORT || 3777
 
 app.get('/hello', ((req, res) => {
     res.send('Hello ', port)
