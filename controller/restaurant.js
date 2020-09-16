@@ -54,7 +54,7 @@ exports.color_post =  ( async (req, res) => {
 })
 
 exports.color_get = ((req, res) => {
-    Restaurant.findById({ _id: req.params.id })
+    Restaurant.findById(req.body.restaurant)
         .then(result => {
             res.json({ success: true, data: result })
         })
