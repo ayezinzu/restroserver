@@ -15,15 +15,15 @@ const restaurantSchema = mongoose.Schema({
     },
     main: {
         type: String,
-        required: true
+        required: false
     },
     buttons: {
         type: String,
-        required: true
+        required: false
     },
     extra : {
         type : String,
-        required: true
+        required: false
     }
 })
 
