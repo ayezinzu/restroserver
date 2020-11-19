@@ -21,6 +21,8 @@ app.use("/css", express.static(__dirname + "/public/css"));
 app.use("/js", express.static(__dirname + "/public/js"));
 app.set(`view engine`, `ejs`);
 app.use(expressLayouts);
+app.use(express.json()) // for parsing application/json
+app.use(express.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
 
 mongoose
   .connect(
