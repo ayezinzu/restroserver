@@ -29,12 +29,13 @@
     <div class="div-block-3">
       <div class="div-block-4">
         <div class="div-block-5">
-          <div class="text-block-7"><span class="text-span"> Restaurant Name</span> : <%- item.restaurantName %></div>
-          <div class="text-block-7"><span class="text-span">Tables</span> : 2</div>
+          <div class="text-block-7"><span class="text-span"> Restaurant Name</span> : <%= item.restaurantName %></div>
+          <div class="text-block-7"><span class="text-span">Tables</span> : <%= item.tables %> </div>
           <div class="w-form">
-            <form id="email-form-2" name="email-form-2" data-name="Email Form 2">
+            <form id="email-form-2" name="email-form-2" data-name="Email Form 2" action="/restaurant/updatetables" method="POST">
               <div class="div-block-9">
-                <div class="text-block-7 updatetables"><span class="text-span">Update Tables</span> :</div><input type="text" class="text-field updatetab w-input" maxlength="256" name="tables" data-name="tables" id="tables" required=""><input type="submit" value="Submit" data-wait="Please wait..." class="submit-button w-button">
+                <input type="hidden" value="<%= item.username %>" name="username" >
+                <div class="text-block-7 updatetables"><span class="text-span">Update Tables</span> :</div><input type="text" name="tables" class="text-field updatetab w-input" maxlength="256" name="tables" data-name="tables" id="tables" required=""><input type="submit" value="Submit" data-wait="Please wait..." class="submit-button w-button">
               </div>
             </form>
             <div class="w-form-done">
@@ -44,16 +45,17 @@
               <div>Oops! Something went wrong while submitting the form.</div>
             </div>
           </div>
-          <div class="text-block-7"><span class="text-span"> Username</span> : Restro455</div>
-          <div class="text-block-7"><span class="text-span">Password</span> : 1234five</div>
+          <div class="text-block-7"><span class="text-span"> Username</span> : <%= item.username %></div>
+          <div class="text-block-7"><span class="text-span">Password</span> : <%= item.password %></div>
           <div class="w-form">
-            <form id="email-form" name="email-form" data-name="Email Form">
+            <form id="email-form" name="email-form" data-name="Email Form" action="/restaurant/updatepassword" method="POST">
               <div class="div-block-6">
                 <div class="div-block-7">
-                  <div class="text-block-7"><span class="text-span pass">New password</span> : </div><input type="text" class="text-field w-input" maxlength="256" name="new-password" data-name="new-password" id="new-password" required="">
+                  <input type="hidden" value="<%= item.username %>" name="username" >
+                  <div class="text-block-7"><span class="text-span pass">New password</span> : </div><input type="text" class="text-field w-input" maxlength="256" name="password" data-name="new-password" id="new-password" required="">
                 </div>
                 <div class="div-block-8">
-                  <div class="text-block-7"><span class="text-span pass">Confirm password</span> : </div><input type="text" class="text-field confirmpass w-input" maxlength="256" name="confirm-password" data-name="confirm-password" id="confirm-password" required="">
+                  <div class="text-block-7"><span class="text-span pass">Confirm password</span> : </div><input type="text" class="text-field confirmpass w-input" maxlength="256" name="confirmpassword" data-name="confirm-password" id="confirm_password" required="">
                 </div><input type="submit" value="Submit" data-wait="Please wait..." class="submit-button w-button">
               </div>
             </form>
@@ -65,8 +67,11 @@
             </div>
           </div>
           <div class="div-block-10">
-            <a href="#" class="block delbutn w-button">Delete</a>
-            <a href="#" class="block blockbtn w-button">Block</a>
+            <form action="/delete" method="POST">
+              <input type="hidden" value="<%= item.username %>" name="username" >
+              <a href="#" type="submit" class="block delbutn w-button" style="padding-left: 50px; padding-right: 50px">Delete</a>
+            </form>
+            <a href="#" class="block blockbtn w-button" style="padding-left: 50px; padding-right: 50px">Block</a>
           </div>
         </div>
       </div>

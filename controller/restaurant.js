@@ -1,7 +1,9 @@
 const Restaurant = require("../models/restaurants");
 
+let foundRestros
+  
 exports.restaurant_get = async (req, res) => {
-  let foundRestros = await Restaurant.find().catch((error) => {
+  foundRestros = await Restaurant.find().catch((error) => {
     res.json({ success: false, message: "No Restros found" });
   });
   res.render(`admin`, { foundRestros: foundRestros });
@@ -28,6 +30,59 @@ exports.singinRestaurant_post = (req, res) => {
       res.json({ success: false, message: "Wrong Username" });
     });
 };
+
+exports.restaurant_tables = (req, res) => {
+  Restaurant.findOne({username: req.body.username})
+  .then((result) => {
+    console.log(req.body, `result here :D`)
+    result.tables = req.body.tables
+    result.save().then(async () => {
+     foundRestros = await Restaurant.find().catch((error) => {
+        res.json({ success: false, message: "No Restros found" });
+      });
+      console.log(`saved`)
+    res.render('admin', { foundRestros: foundRestros })
+  }).catch((err) => {
+      console.log(err, `this err `)
+    })
+  }).catch((err) => {
+    console.log(err)
+  })
+}
+
+exports.restaurant_passwordreset = (req, res) => {
+  Restaurant.findOne({username: req.body.username})
+  .then((result) => {
+    if(req.body.password === req.body.confirmpassword){
+      console.log(result)
+      result.password = req.body.password
+        result.save().then(async () => {
+          foundRestros = await Restaurant.find().catch((error) => {
+            res.json({ success: false, message: "No Restros found" });
+          });
+          res.render('admin', { foundRestros: foundRestros })
+        }).catch((err) => {
+            console.log(err, `this err `)
+          })
+    } else {
+      console.log(err)
+    }
+    
+  }).catch((err) => {
+    console.log(err)
+  })
+}
+
+exports.restaurant_delete = async (req, res) => {
+  await Restaurant.deleteOne({username: req.body.username}).catch((err) => {
+    console.log(err)
+  })
+
+  foundRestros = await Restaurant.find().catch((error) => {
+    res.json({ success: false, message: "No Restros found" });
+  });
+  res.render('admin', { foundRestros: foundRestros })
+}
 
 exports.singupRestaurant_post = (req, res) => {
   const newRestaurant = new Restaurant({
