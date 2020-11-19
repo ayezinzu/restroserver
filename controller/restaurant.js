@@ -36,6 +36,9 @@ exports.singinRestaurant_post = (req, res) => {
     .then((result) => {
       console.log(result);
       if (result.password == req.body.password) {
+        if (result.blocked) {
+          return res.json({ success: false, message: "Account blocked" });
+        }
         result.logins = result.logins + 1;
         if (result.logins > result.tables) {
           return res.json({
