@@ -1,65 +1,79 @@
-const Restaurant = require('../models/restaurants')
+const Restaurant = require("../models/restaurants");
 
+exports.restaurant_get = async (req, res) => {
+  let foundRestros = await Restaurant.find().catch((error) => {
+    res.json({ success: false, message: "No Restros found" });
+  });
+  res.render(`admin`, { foundRestros: foundRestros });
+};
 
-exports.singinRestaurant_post = ((req, res) => {
-    Restaurant.findOne({ username: req.body.username })
-        .then(result => {
-            console.log(result)
-            if (result.password == req.body.password) {
-                res.json({ success: true, data: result })
-            } else {
-                res.json({ success: false, message: 'Wrong Password' })
-            }
-        })
-        .catch(error => {
-            res.json({ success: false, message: 'Wrong Username' })
-        })
-})
-
-exports.singupRestaurant_post = ((req, res) => {
-    const newRestaurant = new Restaurant({
-        username: req.body.username,
-        password: req.body.password,
-        restaurantName: req.body.name
+exports.singinRestaurant_post = (req, res) => {
+  Restaurant.findOne({ username: req.body.username })
+    .then((result) => {
+      console.log(result);
+      if (result.password == req.body.password) {
+        result.logins = result.logins + 1;
+        if (result.logins > result.tables) {
+          return res.json({
+            success: false,
+            message: "Maximuim logins reached",
+          });
+        }
+        res.json({ success: true, data: result });
+      } else {
+        res.json({ success: false, message: "Wrong Password" });
+      }
     })
+    .catch((error) => {
+      res.json({ success: false, message: "Wrong Username" });
+    });
+};
 
-    newRestaurant.save()
-        .then(result => {
-            res.json({ success: true, data: result })
-        })
-        .catch(error => {
-            console.log(error)
-            res.json({ success: false, message: 'Restaurant Addition Failed' })
-        })
-})
+exports.singupRestaurant_post = (req, res) => {
+  const newRestaurant = new Restaurant({
+    username: req.body.username,
+    password: req.body.password,
+    restaurantName: req.body.name,
+    tables: 3,
+    logins: 0,
+  });
 
+  newRestaurant
+    .save()
+    .then((result) => {
+      res.json({ success: true, data: result });
+    })
+    .catch((error) => {
+      console.log(error);
+      res.json({ success: false, message: "Restaurant Addition Failed" });
+    });
+};
 
-exports.color_post =  ( async (req, res) => {
-    console.log(req.body, `test`)
-    const foundRestro = await Restaurant.findById(req.body.restaurant)
-    foundRestro.main = req.body.main
-    foundRestro.buttons = req.body.buttons,
-    foundRestro.extra = req.body.extra 
-    
-    
-    foundRestro.save()
-        .then(result => {
-            res.json({success: true, data: result})
-        })
-        .catch(error => {
-            console.log(error)
-            res.json({ success: false, message: 'Color Addition Failed' })
-        })
+exports.color_post = async (req, res) => {
+  console.log(req.body, `test`);
+  const foundRestro = await Restaurant.findById(req.body.restaurant);
+  foundRestro.main = req.body.main;
+  (foundRestro.buttons = req.body.buttons),
+    (foundRestro.extra = req.body.extra);
 
-})
+  foundRestro
+    .save()
+    .then((result) => {
+      res.json({ success: true, data: result });
+    })
+    .catch((error) => {
+      console.log(error);
+      res.json({ success: false, message: "Color Addition Failed" });
+    });
+};
 
-exports.color_get = ((req, res) => {
-    Restaurant.findById(req.body.restaurant)
-        .then(result => {
-            res.json({ success: true, data: result })
-        })
-        .catch(error => {
-            console.log(error)
-            res.json({ success: false, message: 'Color Fetch failed' })
-        })
-})
+exports.color_get = (req, res) => {
+  Restaurant.findById(req.body.restaurant)
+    .then((result) => {
+      res.json({ success: true, data: result });
+    })
+    .catch((error) => {
+      console.log(error);
+      res.json({ success: false, message: "Color Fetch failed" });
+    });
+};

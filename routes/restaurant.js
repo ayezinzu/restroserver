@@ -1,10 +1,10 @@
-const router = require('express').Router()
-const restaurantController = require('../controller/restaurant')
+const router = require("express").Router();
+const restaurantController = require("../controller/restaurant");
 
-router.post('/restaurantSignin', restaurantController.singinRestaurant_post)
-router.post('/restaurantSignup', restaurantController.singupRestaurant_post)
-router.post('/colorPost', restaurantController.color_post)
-router.post('/colorGet', restaurantController.color_get)
+router.post("/restaurantSignin", restaurantController.singinRestaurant_post);
+router.post("/restaurantSignup", restaurantController.singupRestaurant_post);
+router.post("/colorPost", restaurantController.color_post);
+router.post("/colorGet", restaurantController.color_get);
+router.get(`/restaurants`, restaurantController.restaurant_get);
 
-
-module.exports = router
+module.exports = router;
