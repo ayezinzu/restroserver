@@ -30,11 +30,12 @@
       <div class="div-block-4">
         <div class="div-block-5">
           <div class="text-block-7"><span class="text-span"> Restaurant Name</span> : <%- item.restaurantName %></div>
-          <div class="text-block-7"><span class="text-span">Tables</span> : 2</div>
+          <div class="text-block-7"><span class="text-span">Tables</span> : <%- item.tables %></div>
           <div class="w-form">
-            <form id="email-form-2" name="email-form-2" data-name="Email Form 2">
+            <form id="email-form-2" name="email-form-2" data-name="Email Form 2" action=""></form>
               <div class="div-block-9">
                 <div class="text-block-7 updatetables"><span class="text-span">Update Tables</span> :</div><input type="text" class="text-field updatetab w-input" maxlength="256" name="tables" data-name="tables" id="tables" required=""><input type="submit" value="Submit" data-wait="Please wait..." class="submit-button w-button">
+                <input type="text" value="<%= item.restaurantName %>"
               </div>
             </form>
             <div class="w-form-done">
@@ -44,8 +45,8 @@
               <div>Oops! Something went wrong while submitting the form.</div>
             </div>
           </div>
-          <div class="text-block-7"><span class="text-span"> Username</span> : Restro455</div>
-          <div class="text-block-7"><span class="text-span">Password</span> : 1234five</div>
+          <div class="text-block-7"><span class="text-span"> Username</span> : <%- item.username %></div>
+          <div class="text-block-7"><span class="text-span">Password</span> : <%- item.password %></div>
           <div class="w-form">
             <form id="email-form" name="email-form" data-name="Email Form">
               <div class="div-block-6">

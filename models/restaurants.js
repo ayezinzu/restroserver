@@ -33,6 +33,10 @@ const restaurantSchema = mongoose.Schema({
     type: Number,
     required: false,
   },
+  blocked: {
+    type: Boolean,
+    required: false,
+  },
 });
 
 module.exports = mongoose.model("Reataurant", restaurantSchema);
